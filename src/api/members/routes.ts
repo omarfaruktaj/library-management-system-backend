@@ -1,11 +1,19 @@
 import validateRequest from "@/middlewares/validate-request";
 import { Router } from "express";
-import { createMember, getMembers, getSingleMember } from "./controllers";
-import { createMemberSchema } from "./schemas";
+import {
+	createMember,
+	getMembers,
+	getSingleMember,
+	updateMember,
+} from "./controllers";
+import { createMemberSchema, updateMemberSchema } from "./schemas";
 
 const router = Router();
 
-router.route("/:memberId").get(getSingleMember);
+router
+	.route("/:memberId")
+	.get(getSingleMember)
+	.put(validateRequest(updateMemberSchema), updateMember);
 
 router
 	.route("/")

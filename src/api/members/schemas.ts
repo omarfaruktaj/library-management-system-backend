@@ -8,3 +8,5 @@ export const createMemberSchema = z.object({
 		message: "Invalid date format",
 	}),
 });
+
+export const updateMemberSchema = createMemberSchema.partial();
