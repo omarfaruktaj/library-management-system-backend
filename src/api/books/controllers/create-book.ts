@@ -9,8 +9,6 @@ const createBook = async (req: Request, res: Response) => {
 		data,
 	});
 
-	console.log(data);
-
 	res
 		.status(201)
 		.json(new APIResponse(true, 201, "Book created successfully", book));

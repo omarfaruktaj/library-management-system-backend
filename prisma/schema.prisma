@@ -29,7 +29,7 @@ model Member {
 
 model BorrowRecord {
   borrowId   String    @id @default(uuid())
-  borrowDate DateTime
+  borrowDate DateTime  @default(now())
   returnDate DateTime?
   bookId     String
   book       Book      @relation(fields: [bookId], references: [bookId])
