@@ -7,8 +7,9 @@ const handleDevelopmentError = (
 	_req: Request,
 	res: Response,
 ) => {
-	console.log(err);
-	return res.status(err.code || 500).json({
+	const statusCode =
+		err.code && !Number.isNaN(Number(err.code)) ? Number(err.code) : 500;
+	return res.status(statusCode).json({
 		status: err.status,
 		message: err.message,
 		stack: err.stack,

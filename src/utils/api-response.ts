@@ -12,7 +12,7 @@ class APIResponse<T> {
 		public success: boolean,
 		public status: number,
 		public message: string,
-		public data: T,
+		public data?: T,
 		public pagination?: Pagination,
 	) {}
 }
