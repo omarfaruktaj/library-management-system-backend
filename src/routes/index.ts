@@ -1,8 +1,8 @@
-import { type Request, type Response, Router } from "express";
+import { bookRoues } from "@/api/books";
+import { Router } from "express";
 
 const router = Router();
-router.get("/test", (_req: Request, res: Response) => {
-	res.status(200).json({ message: "success" });
-});
+
+router.use("/books", bookRoues);
 
 export default router;

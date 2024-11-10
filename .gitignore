@@ -52,3 +52,4 @@ temp/
 # Ignore any build or deployment directories
 deploy/
 build/
+request.rest
