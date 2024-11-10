@@ -7,6 +7,6 @@ const router = Router();
 
 router.use("/books", bookRoues);
 router.use("/members", memberRoutes);
-router.use("/borrow", borrowRoutes);
+router.use("/", borrowRoutes);
 
 export default router;
