@@ -2,6 +2,7 @@ import validateRequest from "@/middlewares/validate-request";
 import { Router } from "express";
 import {
 	createMember,
+	deleteMember,
 	getMembers,
 	getSingleMember,
 	updateMember,
@@ -13,7 +14,8 @@ const router = Router();
 router
 	.route("/:memberId")
 	.get(getSingleMember)
-	.put(validateRequest(updateMemberSchema), updateMember);
+	.put(validateRequest(updateMemberSchema), updateMember)
+	.delete(deleteMember);
 
 router
 	.route("/")
