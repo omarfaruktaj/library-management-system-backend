@@ -7,6 +7,7 @@ const handleDevelopmentError = (
 	_req: Request,
 	res: Response,
 ) => {
+	console.log(err);
 	return res.status(err.code || 500).json({
 		status: err.status,
 		message: err.message,
@@ -39,7 +40,7 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, _next) => {
 	} else if (envConfig.NODE_ENV === "production") {
 		const err = { ...error };
 		err.status = error.status || "error";
-		err.statusCode = error.statusCode || 500;
+		err.statusCode = error.code || 500;
 
 		handleProductionError(err, req, res);
 	}

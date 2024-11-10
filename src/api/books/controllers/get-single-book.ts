@@ -5,7 +5,7 @@ import type { Request, Response } from "express";
 const getSingleBook = async (req: Request, res: Response) => {
 	const bookId = req.params.bookId;
 
-	const book = await db.book.findUnique({
+	const book = await db.book.findUniqueOrThrow({
 		where: {
 			bookId,
 		},

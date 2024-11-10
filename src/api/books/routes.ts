@@ -1,11 +1,18 @@
 import validateRequest from "@/middlewares/validate-request";
 import { Router } from "express";
-import { createBook, getBooks, getSingleBook } from "./controllers";
-import { createBookSchema } from "./schemas";
+import { createBook, getBooks, getSingleBook, updateBook } from "./controllers";
+import { createBookSchema, updateBookSchema } from "./schemas";
 
 const router = Router();
-router.get("/:bookId", getSingleBook);
-router.post("/", validateRequest(createBookSchema), createBook);
-router.get("/", getBooks);
+
+router
+	.route("/:bookId")
+	.get(getSingleBook)
+	.put(validateRequest(updateBookSchema), updateBook);
+
+router
+	.route("/")
+	.post(validateRequest(createBookSchema), createBook)
+	.get(getBooks);
 
 export default router;
