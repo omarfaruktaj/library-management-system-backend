@@ -38,6 +38,7 @@
         "useLiteralKeys": "error",
         "useRegexLiterals": "warn",
         "useSimpleNumberKeys": "error"
+        
       },
       "security": {
         "noDangerouslySetInnerHtml": "error",
@@ -54,7 +55,8 @@
         "noUndeclaredVariables": "error",
         "noUnusedImports": "error",
         "useArrayLiterals": "error",
-        "useJsxKeyInIterable": "error"
+        "useJsxKeyInIterable": "error",
+        "noUnusedVariables":"error"
       },
       "style": {
         "noArguments": "warn",

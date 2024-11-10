@@ -1,8 +1,8 @@
 import { db } from "@/config";
 import APIResponse from "@/utils/api-response";
-import type { NextFunction, Request, Response } from "express";
+import type { Request, Response } from "express";
 
-const createBook = async (req: Request, res: Response, next: NextFunction) => {
+const createBook = async (req: Request, res: Response) => {
 	const data = req.body;
 
 	const book = await db.book.create({
