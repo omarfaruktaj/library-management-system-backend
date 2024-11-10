@@ -1,0 +1,97 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "ignore": []
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "tab",
+    "indentWidth": 2,
+    "lineWidth": 80,
+    "lineEnding": "lf"
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "complexity": {
+        "noBannedTypes": "error",
+        "noExcessiveCognitiveComplexity": "warn",
+        "noExcessiveNestedTestSuites": "error",
+        "noForEach": "warn",
+        "noStaticOnlyClass": "warn",
+        "noUselessConstructor": "warn",
+        "noUselessEmptyExport": "warn",
+        "noUselessSwitchCase": "warn",
+        "useArrowFunction": "error",
+        "useDateNow": "warn",
+        "useFlatMap": "warn",
+        "useLiteralKeys": "error",
+        "useRegexLiterals": "warn",
+        "useSimpleNumberKeys": "error"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "error",
+        "noDangerouslySetInnerHtmlWithChildren": "error",
+        "noGlobalEval": "error"
+      },
+      "correctness": {
+        "noChildrenProp": "error",
+        "noConstAssign": "error",
+        "noConstructorReturn": "error",
+        "noInvalidNewBuiltin": "error",
+        "noInvalidUseBeforeDeclaration": "error",
+        "noUndeclaredDependencies": "error",
+        "noUndeclaredVariables": "error",
+        "noUnusedImports": "error",
+        "useArrayLiterals": "error",
+        "useJsxKeyInIterable": "error"
+      },
+      "style": {
+        "noArguments": "warn",
+        "noCommaOperator": "warn",
+        "noImplicitBoolean": "error",
+        "noInferrableTypes": "warn",
+        "noVar": "error",
+        "noYodaExpression": "warn",
+        "useAsConstAssertion": "error",
+        "useBlockStatements": "warn",
+        "useConst": "error",
+        "useExportType": "warn",
+        "useSelfClosingElements": "error",
+        "useTemplate": "warn"
+      },
+      "suspicious": {
+        "noAsyncPromiseExecutor": "warn",
+        "noClassAssign": "error",
+        "noFallthroughSwitchClause": "error",
+        "noFunctionAssign": "warn",
+        "noSelfCompare": "error",
+        "noShorthandPropertyOverrides": "warn",
+        "noSuspiciousSemicolonInJsx": "error"
+      }
+    }
+  },
+ 
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "arrowParentheses": "always",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "semicolons": "always"
+    }
+  }
+  
+}
