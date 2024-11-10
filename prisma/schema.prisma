@@ -7,3 +7,32 @@ datasource db {
   url       = env("POSTGRES_PRISMA_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
+
+model Book {
+  bookId          String         @id @default(uuid())
+  title           String
+  genre           String
+  publishedYear   Int
+  totalCopies     Int
+  availableCopies Int
+  borrowRecords   BorrowRecord[]
+}
+
+model Member {
+  memberId       String         @id @default(uuid())
+  name           String
+  email          String         @unique
+  phone          String
+  membershipDate DateTime
+  borrowRecords  BorrowRecord[]
+}
+
+model BorrowRecord {
+  borrowId   String    @id @default(uuid())
+  borrowDate DateTime
+  returnDate DateTime?
+  bookId     String
+  book       Book      @relation(fields: [bookId], references: [bookId])
+  memberId   String
+  member     Member    @relation(fields: [memberId], references: [memberId])
+}
