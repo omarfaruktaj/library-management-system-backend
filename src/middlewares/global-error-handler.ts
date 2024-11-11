@@ -1,6 +1,44 @@
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import type { ErrorRequestHandler, Request, Response } from "express";
+import { ZodError, type ZodIssue } from "zod";
 import { envConfig } from "../config/env";
-import type { AppError } from "../utils";
+import { AppError } from "../utils";
+
+//* handle zod errors
+const handleZodError = (err: ZodError) => {
+	const errorMessages = err.issues.map((issue: ZodIssue) => {
+		return {
+			path: String(issue?.path[issue.path.length - 1]),
+			message: issue.message,
+		};
+	});
+	const message = errorMessages
+		.map((msg) => `${msg.path}: ${msg.message}`)
+		.join(", ");
+
+	return new AppError(message || "Validation Error", 401, errorMessages);
+};
+
+//* handle prisma error
+const handlePrismaError = (err: PrismaClientKnownRequestError) => {
+	let message = "Database Error";
+	let code = 500;
+
+	if (err.code === "P2002") {
+		const target = err.meta?.target;
+		if (Array.isArray(target)) {
+			message = `Duplicate entry for ${target.join(", ")}`;
+		} else {
+			message = "Duplicate entry for a field.";
+		}
+		code = 409;
+	} else if (err.code === "P2025") {
+		message = "Record not found.";
+		code = 404;
+	}
+
+	return new AppError(message, code);
+};
 
 const handleDevelopmentError = (
 	err: AppError,
@@ -39,9 +77,19 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, _next) => {
 	if (envConfig.NODE_ENV === "development") {
 		handleDevelopmentError(error, req, res);
 	} else if (envConfig.NODE_ENV === "production") {
-		const err = { ...error };
+		let err = { ...error };
+
+		err.message = error.message;
 		err.status = error.status || "error";
 		err.statusCode = error.code || 500;
+
+		if (error instanceof ZodError) {
+			err = handleZodError(error);
+		}
+
+		if (error instanceof PrismaClientKnownRequestError) {
+			err = handlePrismaError(error);
+		}
 
 		handleProductionError(err, req, res);
 	}
