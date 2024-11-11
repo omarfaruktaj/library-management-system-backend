@@ -1,9 +1,11 @@
 import validateRequest from "@/middlewares/validate-request";
 import { Router } from "express";
-import { borrowABook, returnABook } from "./controllers";
+import { borrowABook, getOverdueBorrows, returnABook } from "./controllers";
 import { createBorrowRecordSchema, returnSchema } from "./schema";
 
 const router = Router();
+
+router.get("/borrow/overdue", getOverdueBorrows);
 
 router
 	.route("/borrow")

@@ -33,6 +33,12 @@ const borrowABook = async (req: Request, res: Response, next: NextFunction) => {
 	const borrowRecord = await db.$transaction(async (prisma) => {
 		const borrowRecord = await prisma.borrowRecord.create({
 			data,
+			select: {
+				borrowId: true,
+				bookId: true,
+				memberId: true,
+				borrowDate: true,
+			},
 		});
 
 		await prisma.book.update({
@@ -46,7 +52,6 @@ const borrowABook = async (req: Request, res: Response, next: NextFunction) => {
 
 		return borrowRecord;
 	});
-	console.log(borrowRecord);
 
 	res
 		.status(201)

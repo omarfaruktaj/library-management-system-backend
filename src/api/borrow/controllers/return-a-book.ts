@@ -14,8 +14,9 @@ const returnABook = async (req: Request, res: Response, next: NextFunction) => {
 	if (!borrowRecord) {
 		return next(new AppError("No borrowRecord found", 404));
 	}
+	console.log(borrowRecord);
 
-	if (!borrowRecord.returnDate !== null) {
+	if (borrowRecord.returnDate !== null) {
 		return next(new AppError("You already returned the book", 401));
 	}
 
