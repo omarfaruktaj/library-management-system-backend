@@ -16,7 +16,7 @@ const handleZodError = (err: ZodError) => {
 		.map((msg) => `${msg.path}: ${msg.message}`)
 		.join(", ");
 
-	return new AppError(message || "Validation Error", 401, errorMessages);
+	return new AppError(message || "Validation Error", 400, errorMessages);
 };
 
 //* handle prisma error

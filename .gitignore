@@ -53,3 +53,5 @@ temp/
 deploy/
 build/
 request.rest
+request.prod.rest
+.vercel

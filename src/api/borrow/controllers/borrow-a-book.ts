@@ -17,7 +17,7 @@ const borrowABook = async (req: Request, res: Response, next: NextFunction) => {
 	}
 
 	if (book.availableCopies === 0) {
-		return next(new AppError("No copies available to borrow", 401));
+		return next(new AppError("No copies available to borrow", 409));
 	}
 
 	const member = await db.member.findUnique({
